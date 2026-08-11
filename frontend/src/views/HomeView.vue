@@ -1,5 +1,22 @@
+<script setup>
+import Navbar from "@/components/Navbar.vue";
+</script>
+
 <template>
-  <div style="padding:20px">
-    <h1>HOME PAGE WORKING</h1>
+
+  <Navbar>
+
+    <h1>Our Products</h1>
+
+    <p>
+      เลือกซื้อสินค้าคุณภาพในราคาพิเศษ
+    </p>
+
+  </Navbar>
+
+  <!-- รายการสินค้า -->
+  <div class="container">
+    ...
   </div>
+
 </template>

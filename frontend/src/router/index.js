@@ -1,22 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import HomeView from "../views/HomeView.vue";
-import ShopView from "../views/ShopView.vue";
+import CustomerView from "../views/CustomerView.vue";
+import LoginView from "../views/LoginView.vue";
 import AdminsForm from "../views/AdminsForm.vue";
-import InsertForm from "@/views/InsertForm.vue";
-import UpdateForm from "@/views/UpdateForm.vue";
+
+
 
 const routes = [
-    { path: "/", component: HomeView },
-    { path: "/shop", component: ShopView },
-    { path: "/admins", component: AdminsForm },
-    { path: "/edit/:id", component: UpdateForm, props: true },
-    { path: "/insert", component: InsertForm },
+  { path: "/", component: HomeView },
+  { path: "/customer", component: CustomerView },
+  { path: "/login", component: LoginView },
+  { path: "/admins", component: AdminsForm },
+  { path: "/customer/:id", component: CustomerView, props: true },
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
