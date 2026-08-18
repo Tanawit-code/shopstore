@@ -27,9 +27,16 @@ const saveProduct = async()=>{
     }
 
     try{
+        const token = localStorage.getItem("token");
+
         await axios.post(
             "http://localhost:3000/admins",
-            product.value
+            product.value,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
         );
         alert("Save Product Success");
 

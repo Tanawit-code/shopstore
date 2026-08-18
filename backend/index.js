@@ -28,6 +28,10 @@ app.use("/", products);
 const auths = require("./routes/auths");
 app.use("/", auths);
 
+// เรียก Route register (สมัครสมาชิก)
+const register = require("./routes/register");
+app.use("/register", register);
+
 
 // เปิด Server
 app.listen(PORT, () => {

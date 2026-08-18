@@ -1,29 +1,29 @@
-const express=require("express");
-const router=express.Router();
-const db=require("../db");
+const express = require("express");
+const router = express.Router();
+const db = require("../db");
 
-const verifyToken=require("../middleware/auths");
-const role=require("../middleware/role");
+const verifyToken = require("../middleware/auths");
+const role = require("../middleware/role");
 
-router.get("/products",verifyToken,role("customer"),(req,res)=>{
+router.get("/products", verifyToken, role("customer"), (req, res) => {
 
-const sql="SELECT * FROM products";
+    const sql = "SELECT * FROM products";
 
-db.query(sql,(err,results)=>{
+    db.query(sql, (err, results) => {
 
-if(err){
-console.error(err);
+        if (err) {
+            console.error(err);
 
-return res.status(500).json({
-success:false,
-message:"เกิดข้อผิดพลาดในการดึงข้อมูล"
+            return res.status(500).json({
+                success: false,
+                message: "เกิดข้อผิดพลาดในการดึงข้อมูล"
+            });
+        }
+
+        res.json(results);
+
+    });
+
 });
-}
 
-res.json(results);
-
-});
-
-});
-
-module.exports=router;
+module.exports = router;

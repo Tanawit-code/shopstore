@@ -4,12 +4,24 @@ import {useRouter} from "vue-router";
 
 
 
-const cart=useCartStore();
 const router=useRouter();
 
 const user=computed(()=>{
 const data=localStorage.getItem("user");
 return data?JSON.parse(data):{};
+});
+
+const cartCount=computed(()=>{
+const data=localStorage.getItem("cart");
+if(!data){
+return 0;
+}
+try{
+const cart=JSON.parse(data);
+return Array.isArray(cart)?cart.length:0;
+}catch(error){
+return 0;
+}
 });
 
 const logout=()=>{
@@ -59,7 +71,7 @@ Contact
 </span>
 </span>
     <RouterLink to="/cart" class="cart-btn">
-    🛒 Cart ({{cart.cartCount}})
+    🛒 Cart ({{cartCount}})
     </RouterLink>
 <button class="logout-btn" @click="logout">
 Logout
