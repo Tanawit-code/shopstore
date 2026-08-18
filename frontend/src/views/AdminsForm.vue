@@ -85,10 +85,10 @@ placeholder="ค้นหาชื่อสินค้า"
 />
 
 <button
-class="btn btn-primary"
-@click="loadProducts"
+    class="btn btn-primary"
+    @click="loadProducts"
 >
-ค้นหา
+    ค้นหา
 </button>
 
 <RouterLink
@@ -145,9 +145,10 @@ Edit
 <td class="text-center">
 
 <button
-class="btn btn-danger btn-sm"
+    class="btn btn-danger btn-sm"
+    @click="deleteProduct(item.ProductID)"
 >
-Delete
+    Delete
 </button>
 
 </td>

@@ -20,46 +20,71 @@ const product = ref({
 // โหลดข้อมูลสินค้า
 // ======================
 
-const loadProduct = async()=>{
-    try{
-        const res = await axios.get(
-            `http://localhost:3000/admins/${id}`
-        );
-        console.log(res.data);
-        product.value = res.data;
-    }
-    catch(error){
+const loadProduct = async () => {
 
-        console.log(error);
+    try {
+
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+            `http://localhost:3000/admins/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        product.value = res.data;
+
+    } catch (error) {
+
+        console.error(error);
+
     }
+
 };
 
 // ======================
 // Update
 // ======================
 
-const updateProduct = async()=>{
-    if(!confirm(
-        "คุณต้องการแก้ไขสินค้าใช่ไหม?"
-    )){
+const updateProduct = async () => {
 
+    if (!confirm("คุณต้องการแก้ไขสินค้าใช่ไหม?")) {
         return;
     }
-    try{
+
+
+    try {
+
+        const token = localStorage.getItem("token");
+
         await axios.put(
             `http://localhost:3000/admins/${id}`,
-            product.value
+            product.value,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
         );
-        alert(
-            "แก้ไขเรียบร้อย"
-        );
-        router.push("/admins");
-    }
-    catch(error){
-        console.log(error);
-    }
-};
 
+
+        alert("แก้ไขเรียบร้อย");
+
+        router.push("/admins");
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("ไม่สามารถแก้ไขสินค้าได้");
+
+    }
+
+};
 
 onMounted(()=>{
     loadProduct();
